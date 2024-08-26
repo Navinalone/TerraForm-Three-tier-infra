@@ -1,0 +1,22 @@
+
+jobs:
+- job: TerraformJob
+  displayName: 'Terraform Deployment'
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: TerraformTaskV3@3
+    displayName: 'Terraform Init'
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(Build.SourcesDirectory)/TerraformTest'
+      backendServiceArm: 'POC-NVN (1d16b9c0-4cbf-4135-8e9a-0c11901ff130)'
+      backendAzureRmResourceGroupName: 'terraform-test'
+      backendAzureRmStorageAccountName: 'nvnterraformbackend'
+      backendAzureRmContainerName: 'terraformbackend'
+      backendAzureRmKey: 'terraform.backend'
+
+
+
+
